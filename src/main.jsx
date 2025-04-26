@@ -1,14 +1,29 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router'
+import { BrowserRouter, Routes, Route } from 'react-router'
 
 import './index.css'
-import App from './App.jsx'
+import Home from './pages/home/home.jsx'
+import Create from './pages/create/create.jsx'
+import Post from './pages/post/post.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <Routes>
+        <Route
+          path="/"
+          element={<Home />}
+        />
+        <Route
+          path="/create"
+          element={<Create />}
+        />
+        <Route
+          path="/pin/:id"
+          element={<Post />}
+        />
+      </Routes>
     </BrowserRouter>
   </StrictMode>
 )
