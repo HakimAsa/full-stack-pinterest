@@ -9,34 +9,38 @@ import Post from './pages/post/post.jsx'
 import Search from './pages/search/Search.jsx'
 import Auth from './pages/auth/auth.jsx'
 import Profile from './pages/profile/profile.jsx'
+import RootLayout from './pages/layout/rootLayout.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={<Home />}
-        />
-        <Route
-          path="/create"
-          element={<Create />}
-        />
-        <Route
-          path="/pin/:id"
-          element={<Post />}
-        />
+        <Route element={<RootLayout />}>
+          <Route
+            path="/"
+            element={<Home />}
+          />
+          <Route
+            path="/create"
+            element={<Create />}
+          />
+          <Route
+            path="/pin/:id"
+            element={<Post />}
+          />
+
+          <Route
+            path="/search"
+            element={<Search />}
+          />
+          <Route
+            path="/:username"
+            element={<Profile />}
+          />
+        </Route>
         <Route
           path="/auth"
           element={<Auth />}
-        />
-        <Route
-          path="/search"
-          element={<Search />}
-        />
-        <Route
-          path="/:username"
-          element={<Profile />}
         />
       </Routes>
     </BrowserRouter>
