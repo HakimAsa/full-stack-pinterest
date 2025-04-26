@@ -1,7 +1,8 @@
 import './home.css'
+import Gallery from '../../components/gallery/gallery'
 
 const Home = () => {
-  return <div className="home">Home</div>
+  return <Gallery />
 }
 
 export default Home
