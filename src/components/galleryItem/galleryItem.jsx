@@ -4,7 +4,8 @@ import './galleryItem.css'
 import Image from '../image/image'
 
 const GalleryItem = ({ item }) => {
-  const optimizedHeight = (372 * item.height) / item.width
+  const minWidth = 372 //breakpoint on mobile
+  const optimizedHeight = (minWidth * item.height) / item.width
   return (
     <div
       className="galleryItem"
@@ -13,7 +14,7 @@ const GalleryItem = ({ item }) => {
       <Image
         alt={'item' + item.id}
         path={item.media}
-        width={372} //breakpoint on mobile
+        width={minWidth}
         height={optimizedHeight}
       />
       <Link
@@ -23,14 +24,14 @@ const GalleryItem = ({ item }) => {
       <button className="saveBtn">Save</button>
       <div className="overlayIcons">
         <button>
-          <img
-            src="/general/share.svg"
+          <Image
+            path="/general/share.svg"
             alt="share"
           />
         </button>
         <button>
-          <img
-            src="/general/more.svg"
+          <Image
+            path="/general/more.svg"
             alt=""
           />
         </button>

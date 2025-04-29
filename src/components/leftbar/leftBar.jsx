@@ -1,3 +1,4 @@
+import Image from '../image/image'
 import './leftBar.css'
 
 const leftBar = () => {
@@ -8,8 +9,8 @@ const leftBar = () => {
           href="/"
           className="menuIcon"
         >
-          <img
-            src="/general/logo.png"
+          <Image
+            path="/general/logo.png"
             alt="logo"
             className="logo"
           />
@@ -18,8 +19,8 @@ const leftBar = () => {
           href="/"
           className="menuIcon"
         >
-          <img
-            src="/general/home.svg"
+          <Image
+            path="/general/home.svg"
             alt="home"
           />
         </a>
@@ -27,8 +28,8 @@ const leftBar = () => {
           href="/"
           className="menuIcon"
         >
-          <img
-            src="/general/create.svg"
+          <Image
+            path="/general/create.svg"
             alt="create"
           />
         </a>
@@ -36,8 +37,8 @@ const leftBar = () => {
           href="/"
           className="menuIcon"
         >
-          <img
-            src="/general/updates.svg"
+          <Image
+            path="/general/updates.svg"
             alt="updates"
           />
         </a>
@@ -45,8 +46,8 @@ const leftBar = () => {
           href="/"
           className="menuIcon"
         >
-          <img
-            src="/general/messages.svg"
+          <Image
+            path="/general/messages.svg"
             alt="messages"
           />
         </a>
