@@ -1,6 +1,9 @@
 import { Link } from 'react-router'
+import { IKImage } from 'imagekitio-react'
 
 import './galleryItem.css'
+
+const urlEndpoint = import.meta.env.VITE_URL_IK_ENDPOINT
 
 const GalleryItem = ({ item }) => {
   return (
@@ -8,10 +11,23 @@ const GalleryItem = ({ item }) => {
       className="galleryItem"
       style={{ gridRowEnd: `span ${Math.ceil(item.height / 100)}` }}
     >
-      <img
+      <IKImage
+        urlEndpoint={urlEndpoint}
+        path={item.media}
+        transformation={[
+          {
+            width: 500,
+            // height: 200,
+          },
+        ]}
+        alt={'item' + item.id}
+        loading="lazy"
+        lqip={{ active: true, quality: 20 }}
+      />
+      {/* <img
         src={item.media}
         alt={'item' + item.id}
-      />
+      /> */}
       <Link
         to={`/pin/${item.id}`}
         className="overlay"
