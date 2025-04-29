@@ -1,33 +1,21 @@
 import { Link } from 'react-router'
-import { IKImage } from 'imagekitio-react'
 
 import './galleryItem.css'
-
-const urlEndpoint = import.meta.env.VITE_URL_IK_ENDPOINT
+import Image from '../image/image'
 
 const GalleryItem = ({ item }) => {
+  const optimizedHeight = (372 * item.height) / item.width
   return (
     <div
       className="galleryItem"
       style={{ gridRowEnd: `span ${Math.ceil(item.height / 100)}` }}
     >
-      <IKImage
-        urlEndpoint={urlEndpoint}
+      <Image
+        alt={'item' + item.id}
         path={item.media}
-        transformation={[
-          {
-            width: 500,
-            // height: 200,
-          },
-        ]}
-        alt={'item' + item.id}
-        loading="lazy"
-        lqip={{ active: true, quality: 20 }}
+        width={372} //breakpoint on mobile
+        height={optimizedHeight}
       />
-      {/* <img
-        src={item.media}
-        alt={'item' + item.id}
-      /> */}
       <Link
         to={`/pin/${item.id}`}
         className="overlay"
