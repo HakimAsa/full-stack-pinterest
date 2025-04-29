@@ -10,7 +10,7 @@ const leftBar = () => {
           className="menuIcon"
         >
           <Image
-            path="/general/logo.png"
+            path="/general/brandpinclear.png"
             alt="logo"
             className="logo"
           />
