@@ -52,7 +52,7 @@
 
 .galleryItem:hover .saveBtn {
   display: block;
-  background-color: #e50829;
+  background-color: var(--primary);
   color: white;
   border-radius: 24px;
   padding: 12px 16px;
