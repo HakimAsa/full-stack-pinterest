@@ -1,3 +1,4 @@
+import PrimaryBtn from '../button/primaryBtn'
 import Image from '../image/image'
 import './postInteractions.css'
 
@@ -19,7 +20,7 @@ const PostInteractions = () => {
           alt="more"
         />
       </div>
-      <button>Save</button>
+      <PrimaryBtn />
     </div>
   )
 }

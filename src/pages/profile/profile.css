@@ -1,0 +1,66 @@
+.profile {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profileImg {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profileName {
+  font-size: 36px;
+  font-weight: 500;
+}
+.profileUsername {
+  font-weight: 300;
+  color: gray;
+}
+
+.followCounts {
+  font-weight: 500;
+}
+
+.profileInteractions {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.profileInteractions .imgContainer:hover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--background);
+}
+
+.profileButtons {
+  display: flex;
+  gap: 16px;
+}
+
+.profileOptions {
+  display: flex;
+  gap: 16px;
+  font-weight: 50;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.profileOptions span {
+  cursor: pointer;
+  padding: 8px 0px;
+  font-weight: 500;
+}
+.profileOptions span:hover {
+  color: gray;
+}
+
+.active {
+  border-bottom: 3px solid black;
+}

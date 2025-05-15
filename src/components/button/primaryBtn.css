@@ -1,0 +1,15 @@
+.primaryBtn {
+  padding: 16px;
+  border-radius: 24px;
+  background-color: var(--primary);
+  color: white;
+  outline: none;
+  font-weight: 700;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.primaryBtn:hover {
+  background-color: var(--primary-hover);
+}
