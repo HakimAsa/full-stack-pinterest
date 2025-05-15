@@ -1,3 +1,5 @@
+import { Link } from 'react-router'
+
 import Image from '../image/image'
 import './leftBar.css'
 
@@ -24,15 +26,15 @@ const leftBar = () => {
             alt="home"
           />
         </a>
-        <a
-          href="/"
+        <Link
+          to="/create"
           className="menuIcon"
         >
           <Image
             path="/general/create.svg"
             alt="create"
           />
-        </a>
+        </Link>
         <a
           href="/"
           className="menuIcon"
