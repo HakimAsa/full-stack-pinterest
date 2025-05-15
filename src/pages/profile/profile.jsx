@@ -3,6 +3,8 @@ import { useState } from 'react'
 import PrimaryBtn from '../../components/button/primaryBtn'
 import Image from '../../components/image/image'
 import './profile.css'
+import Collections from '../../components/collections/collections'
+import Gallery from '../../components/gallery/gallery'
 
 const buttonStyle = {
   backgroundColor: '#f1f1f1',
@@ -58,6 +60,8 @@ const Profile = () => {
           Saved
         </span>
       </div>
+
+      {type === 'created' ? <Gallery /> : <Collections />}
     </div>
   )
 }
