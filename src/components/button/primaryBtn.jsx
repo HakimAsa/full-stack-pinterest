@@ -1,8 +1,9 @@
 import './primaryBtn.css'
 
-const PrimaryBtn = ({ text, style }) => {
+const PrimaryBtn = ({ text, style, props }) => {
   return (
     <button
+      {...props}
       style={style}
       className="primaryBtn"
     >
