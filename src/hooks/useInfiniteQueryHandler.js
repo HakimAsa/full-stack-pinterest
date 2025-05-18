@@ -6,11 +6,14 @@ export default function useInfiniteQueryHandler({
   initialPageParam = null,
   getNextPageParam,
   options = {},
+  params = {}, // <- accepts search params
 }) {
   return useInfiniteQuery({
-    queryKey: [key],
-    queryFn: ({ pageParam = initialPageParam }) => apiFunc({ pageParam }),
-    initialPageParam: 0,
+    queryKey: [key, params],
+    queryFn: ({ pageParam = initialPageParam, queryKey }) => {
+      const [, otherParams] = queryKey
+      return apiFunc({ pageParam, ...otherParams })
+    },
     getNextPageParam,
     ...options,
   })
