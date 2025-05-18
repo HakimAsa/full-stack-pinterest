@@ -31,9 +31,9 @@ client.addAsyncResponseTransform(async (response) => {
   }
 
   // Optional: flatten nested data
-  if (response.ok && response.data && response.data.data) {
-    response.data = response.data.data
-  }
+  // if (response.ok && response.data && response.data.data) {
+  //   response.data = response.data.data
+  // }
 })
 
 export default client

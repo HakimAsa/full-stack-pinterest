@@ -1,3 +1,5 @@
+import InfinitScroll from 'react-infinite-scroll-component'
+
 import GalleryItem from '../galleryItem/galleryItem'
 import pinApi from '../../api/pins'
 import './gallery.css'
@@ -74,16 +76,25 @@ const Gallery = () => {
       </p>
     )
   if (status === 'pending') return <p>loading...</p>
-  console.log('hey data', data)
+
+  const allPins = data?.pages.flatMap((page) => page.data) || []
   return (
-    <div className="gallery">
-      {/* {data?.data?.data?.map((item) => (
-        <GalleryItem
-          key={item._id.toString()}
-          item={item}
-        />
-      ))} */}
-    </div>
+    <InfinitScroll
+      dataLength={allPins.length}
+      next={fetchNextPage}
+      hasMore={!!hasNextPage}
+      loader={<h4>loading more pins...</h4>}
+      endMessage={<h3>All Pins loaded!</h3>}
+    >
+      <div className="gallery">
+        {allPins?.map((item) => (
+          <GalleryItem
+            key={item?._id.toString()}
+            item={item}
+          />
+        ))}
+      </div>
+    </InfinitScroll>
   )
 }
 
