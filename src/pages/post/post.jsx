@@ -1,11 +1,30 @@
-import { Link } from 'react-router'
+import { Link, useParams } from 'react-router'
 
 import Image from '../../components/image/image'
 import PostInteractions from '../../components/postInteractions/postInteractions'
 import './post.css'
 import Comments from '../../components/comments/comments'
+import useQueryHandler from '../../hooks/useQueryHandler'
+import pinApi from '../../api/pins'
 
 const Post = () => {
+  const { id } = useParams()
+  const { data, isLoading, error } = useQueryHandler({
+    key: 'pin',
+    apiFunc: () => pinApi.getPin(id),
+    params: {
+      id,
+    },
+  })
+  if (error)
+    return (
+      <p style={{ color: 'red' }}>
+        An error has occured: {data?.originalError?.message}
+      </p>
+    )
+  if (isLoading) return <p>Loading...</p>
+
+  const pin = data && data.data
   return (
     <div className="post">
       <svg
@@ -23,19 +42,19 @@ const Post = () => {
       <div className="postContainer">
         <div className="postImage">
           <Image
-            path="/pins/pin1.jpeg"
-            alt="pin1"
+            src={pin.media}
+            alt={pin.title}
             width={736}
           />
         </div>
         <div className="postDetails">
           <PostInteractions />
           <Link
-            to="/jonh"
+            to={`/${pin?.user?.username}`}
             className="postUser"
           >
-            <Image path="/general/noAvatar.png" />
-            <span>John Doe</span>
+            <Image src={pin?.user?.profilePicture || '/general/noAvatar.png'} />
+            <span>{pin?.user?.displayName}</span>
           </Link>
           <Comments />
         </div>
