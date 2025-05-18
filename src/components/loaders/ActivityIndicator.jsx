@@ -1,4 +1,4 @@
-const ActivitityIndicator = ({ error, isLoading }) => {
+const ActivityIndicator = ({ error, isLoading }) => {
   if (error)
     return (
       <p style={{ color: 'red' }}>An error has occured: {error?.message}</p>
@@ -8,4 +8,4 @@ const ActivitityIndicator = ({ error, isLoading }) => {
   return null // Always return something
 }
 
-export default ActivitityIndicator
+export default ActivityIndicator

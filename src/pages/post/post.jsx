@@ -6,14 +6,14 @@ import './post.css'
 import Comments from '../../components/comments/comments'
 import pinApi from '../../api/pins'
 import useFetch from '../../hooks/useFetch'
-import ActivitityIndicator from '../../components/loaders/ActivitityIndicator'
+import ActivityIndicator from '../../components/loaders/ActivityIndicator'
 
 const Post = () => {
   const { data: pin, isLoading, error } = useFetch(pinApi.getPin, 'pin')
 
   if (error || isLoading)
     return (
-      <ActivitityIndicator
+      <ActivityIndicator
         error={error}
         isLoading={isLoading}
       />

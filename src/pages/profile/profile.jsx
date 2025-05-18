@@ -7,7 +7,7 @@ import Boards from '../../components/boards/boards'
 import Gallery from '../../components/gallery/gallery'
 import authApi from '../../api/auth'
 import useFetch from '../../hooks/useFetch'
-import ActivitityIndicator from '../../components/loaders/ActivitityIndicator'
+import ActivityIndicator from '../../components/loaders/ActivityIndicator'
 
 const buttonStyle = {
   backgroundColor: '#f1f1f1',
@@ -25,7 +25,7 @@ const Profile = () => {
 
   if (error || isLoading)
     return (
-      <ActivitityIndicator
+      <ActivityIndicator
         error={error}
         isLoading={isLoading}
       />

@@ -1,12 +1,17 @@
-import client from './client'
+import callServer from '../utils/callServer'
+import { doSetForwardslash as dsf } from '../utils/helpers'
+import endpoints from '../utils/endpoints'
+import HM from '../utils/httpMethods'
+
+const { PINS } = endpoints
 
 const getPins = async (query = {}) => {
-  const response = await client.get('/pins', { ...query })
-  return response.data
+  const { data } = await callServer(dsf(PINS), HM.GET, false, query)
+  return data
 }
 const getPin = async ({ id, params = {} }) => {
-  const response = await client.get(`/pins/${id}`, { ...params })
-  return response.data
+  const { data } = await callServer(dsf(PINS, id), HM.GET, false, params)
+  return data
 }
 
 export default {
