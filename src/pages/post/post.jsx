@@ -1,30 +1,24 @@
-import { Link, useParams } from 'react-router'
+import { Link } from 'react-router'
 
 import Image from '../../components/image/image'
 import PostInteractions from '../../components/postInteractions/postInteractions'
 import './post.css'
 import Comments from '../../components/comments/comments'
-import useQueryHandler from '../../hooks/useQueryHandler'
 import pinApi from '../../api/pins'
+import useFetch from '../../hooks/useFetch'
+import ActivitityIndicator from '../../components/loaders/ActivitityIndicator'
 
 const Post = () => {
-  const { id } = useParams()
-  const { data, isLoading, error } = useQueryHandler({
-    key: 'pin',
-    apiFunc: () => pinApi.getPin(id),
-    params: {
-      id,
-    },
-  })
-  if (error)
-    return (
-      <p style={{ color: 'red' }}>
-        An error has occured: {data?.originalError?.message}
-      </p>
-    )
-  if (isLoading) return <p>Loading...</p>
+  const { data: pin, isLoading, error } = useFetch(pinApi.getPin, 'pin')
 
-  const pin = data && data.data
+  if (error || isLoading)
+    return (
+      <ActivitityIndicator
+        error={error}
+        isLoading={isLoading}
+      />
+    )
+
   return (
     <div className="post">
       <svg

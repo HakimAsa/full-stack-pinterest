@@ -1,66 +1,66 @@
 import Image from '../image/image'
-import './collections.css'
+import './boards.css'
 
-const Collections = ({ userId }) => {
+const Boards = ({ userId }) => {
   return (
-    <div className="collections">
+    <div className="boards">
       {/* COLLECTION */}
-      <div className="collection">
+      <div className="board">
         <Image
           path="/pins/pin1.jpeg"
           alt="pin1"
         />
-        <div className="collectionInfo">
+        <div className="boardInfo">
           <h1>Minimalist bedroom</h1>
           <span>12 pins . 1w</span>
         </div>
       </div>
-      <div className="collection">
+      <div className="board">
         <Image
           path="/pins/pin1.jpeg"
           alt="pin1"
         />
-        <div className="collectionInfo">
+        <div className="boardInfo">
           <h1>Minimalist bedroom</h1>
           <span>12 pins . 1w</span>
         </div>
       </div>
-      <div className="collection">
+      <div className="board">
         <Image
           path="/pins/pin1.jpeg"
           alt="pin1"
         />
-        <div className="collectionInfo">
+        <div className="boardInfo">
           <h1>Minimalist bedroom</h1>
           <span>12 pins . 1w</span>
         </div>
       </div>
-      <div className="collection">
+      <div className="board">
         <Image
           path="/pins/pin1.jpeg"
           alt="pin1"
         />
-        <div className="collectionInfo">
+        <div className="boardInfo">
           <h1>Minimalist bedroom</h1>
           <span>12 pins . 1w</span>
         </div>
       </div>
-      <div className="collection">
+      <div className="board">
         <Image
           path="/pins/pin1.jpeg"
           alt="pin1"
         />
-        <div className="collectionInfo">
+        <div className="boardInfo">
           <h1>Minimalist bedroom</h1>
           <span>12 pins . 1w</span>
         </div>
       </div>
-      <div className="collection">
+      <div className="board">
         <Image
           path="/pins/pin1.jpeg"
           alt="pin1"
         />
-        <div className="collectionInfo">
+        <div className="boardInfo">
           <h1>Minimalist bedroom</h1>
           <span>12 pins . 1w</span>
         </div>
@@ -69,4 +69,4 @@ const Collections = ({ userId }) => {
   )
 }
 
-export default Collections
+export default Boards

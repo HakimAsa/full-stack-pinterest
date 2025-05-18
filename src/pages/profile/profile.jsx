@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import { useParams } from 'react-router'
 
 import PrimaryBtn from '../../components/button/primaryBtn'
 import Image from '../../components/image/image'
 import './profile.css'
-import Collections from '../../components/collections/collections'
+import Boards from '../../components/boards/boards'
 import Gallery from '../../components/gallery/gallery'
-import useQueryHandler from '../../hooks/useQueryHandler'
 import authApi from '../../api/auth'
+import useFetch from '../../hooks/useFetch'
+import ActivitityIndicator from '../../components/loaders/ActivitityIndicator'
 
 const buttonStyle = {
   backgroundColor: '#f1f1f1',
@@ -15,26 +15,21 @@ const buttonStyle = {
 }
 
 const Profile = () => {
-  const { username } = useParams()
-
   const [type, setType] = useState('saved')
 
-  const { data, isLoading, error } = useQueryHandler({
-    key: 'profile',
-    apiFunc: () => authApi.getUser(username),
-    params: {
-      username,
-    },
-  })
-  if (error)
-    return (
-      <p style={{ color: 'red' }}>
-        An error has occured: {data?.originalError?.message}
-      </p>
-    )
-  if (isLoading) return <p>Loading...</p>
+  const {
+    data: profile,
+    isLoading,
+    error,
+  } = useFetch(authApi.getUser, 'profile')
 
-  const profile = data && data.data
+  if (error || isLoading)
+    return (
+      <ActivitityIndicator
+        error={error}
+        isLoading={isLoading}
+      />
+    )
 
   return (
     <div className="profile">
@@ -84,7 +79,11 @@ const Profile = () => {
         </span>
       </div>
 
-      {type === 'created' ? <Gallery userId={profile._id} /> : <Collections />}
+      {type === 'created' ? (
+        <Gallery userId={profile._id} />
+      ) : (
+        <Boards userId={profile._id} />
+      )}
     </div>
   )
 }
