@@ -1,4 +1,7 @@
+import { useInfiniteQuery } from '@tanstack/react-query'
+
 import GalleryItem from '../galleryItem/galleryItem'
+import pinApi from '../../api/pins'
 import './gallery.css'
 
 //TEMP ITEM ARRAY
@@ -55,14 +58,31 @@ const items = [
 ]
 
 const Gallery = () => {
+  const { data, fetchNextPage, hasNextPage, status } = useInfiniteQuery({
+    queryKey: ['pins'],
+    queryFn: pinApi.getPins,
+    initialPageParam: 0,
+    getNextPageParam: function (lastPage, pages) {
+      return lastPage.nextCursor
+    },
+  })
+
+  if (!data?.ok || status === 'error')
+    return (
+      <p style={{ color: 'red' }}>
+        An error has occured: {data?.originalError?.message}
+      </p>
+    )
+  if (status === 'pending') return <p>loading...</p>
+
   return (
     <div className="gallery">
-      {items.map((item) => (
+      {/* {data?.data?.data?.map((item) => (
         <GalleryItem
-          key={item.id.toString()}
+          key={item._id.toString()}
           item={item}
         />
-      ))}
+      ))} */}
     </div>
   )
 }

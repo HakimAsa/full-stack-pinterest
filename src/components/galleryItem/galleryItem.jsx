@@ -12,13 +12,13 @@ const GalleryItem = ({ item }) => {
       style={{ gridRowEnd: `span ${Math.ceil(item.height / 100)}` }}
     >
       <Image
-        alt={'item' + item.id}
+        alt={'item' + item._id}
         path={item.media}
         width={minWidth}
         height={optimizedHeight}
       />
       <Link
-        to={`/pin/${item.id}`}
+        to={`/pin/${item._id}`}
         className="overlay"
       />
       <button className="saveBtn">Save</button>
