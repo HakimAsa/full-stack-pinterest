@@ -1,7 +1,9 @@
 import client from './client'
 
-const getPins = (pageParam) =>
-  client.get('/pins', { params: { cursor: pageParam } })
+const getPins = async (pageParam) => {
+  const response = await client.get('/pins', { params: { cursor: pageParam } })
+  return response.data
+}
 
 export default {
   getPins,
