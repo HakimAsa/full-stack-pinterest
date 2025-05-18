@@ -1,7 +1,7 @@
 import Image from '../image/image'
 import './collections.css'
 
-const Collections = () => {
+const Collections = ({ userId }) => {
   return (
     <div className="collections">
       {/* COLLECTION */}

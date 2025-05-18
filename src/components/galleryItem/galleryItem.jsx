@@ -13,7 +13,7 @@ const GalleryItem = ({ item }) => {
     >
       <Image
         alt={'item' + item._id}
-        path={item.media}
+        src={item.media}
         width={minWidth}
         height={optimizedHeight}
       />
