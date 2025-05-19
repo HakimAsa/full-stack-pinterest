@@ -33,6 +33,7 @@ const Comments = ({ pinId }) => {
           />
         ))}
       </div>
+      {/* COMMENT FORM */}
       <CommentForm />
     </div>
   )

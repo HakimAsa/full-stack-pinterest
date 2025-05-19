@@ -1,11 +1,15 @@
 export default {
+  AUTH: 'auth',
   BOARDS: 'boards',
   COMMENTS: 'comments',
   CREATE_PIN: 'create-pin',
   CREATE_USER: 'create-user',
   FORWARDSLASH: '/',
+  LOGIN: 'login',
+  LOGOUT: 'logout',
   ME: 'me',
   PINS: 'pins',
+  REGISTER: 'register',
   USERS: 'users',
   USERNAME: 'username',
 }

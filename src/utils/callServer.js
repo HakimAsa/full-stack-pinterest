@@ -17,3 +17,22 @@ export default async function callServer(endpoint, method, json, headers) {
       : client[method](endpoint, json, headers)
   return res
 }
+
+export const callServerError = (error) => {
+  if (typeof error === 'string') return error
+
+  if (error.response && error.response.data) {
+    if (typeof error.response.data === 'string') return error.response.data
+    return error.response.data.errorMessage || error.response.data.message
+  }
+
+  if (error.response?.message) return error.response.message
+
+  console.log('error', error)
+
+  return (
+    (error.message && error.message) ||
+    error.data.message ||
+    error.data.errorMessage
+  )
+}

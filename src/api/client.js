@@ -2,6 +2,7 @@ import { create } from 'apisauce'
 
 const client = create({
   baseURL: import.meta.env.VITE_PinRestURL,
+  withCredentials: true,
   timeout: 5000,
 })
 
@@ -21,6 +22,7 @@ client.addAsyncRequestTransform(async (request) => {
 //transform the response
 client.addAsyncResponseTransform(async (response) => {
   if (!response.ok && response.status === 401) {
+    console.info('401 Error:', response)
     // e.g. await refreshToken()
     // retry logic, or redirect to login
   }

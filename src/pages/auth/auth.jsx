@@ -1,16 +1,25 @@
+import { useState } from 'react'
 import './auth.css'
 import Image from '../../components/image/image'
 import PrimaryBtn from '../../components/button/primaryBtn'
-import { Link } from 'react-router'
-import { useState } from 'react'
+import { Link, useNavigate } from 'react-router'
+import authApi from '../../api/auth'
+import useApi from '../../hooks/useApi'
 
 const Auth = () => {
   const [isRegister, setIsRegister] = useState(false)
-  const [error, setError] = useState('')
+  const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+  const register = useApi(authApi.registerUser)
+  const login = useApi(authApi.loginUser)
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
     // Handle form submission logic here
+    const formData = new FormData(e.target)
+    const data = Object.fromEntries(formData)
+    isRegister ? await register.request(data) : await login.request(data)
+    navigate('/')
   }
   return (
     <div className="auth">
@@ -23,7 +32,10 @@ const Auth = () => {
         />
         <h1>{isRegister ? 'Create an account' : 'Login to your account'}</h1>
         {isRegister ? (
-          <form key="registerForm">
+          <form
+            key="registerForm"
+            onSubmit={handleSubmit}
+          >
             <div className="formGroup">
               <label htmlFor="username">Username</label>
               <input
@@ -35,11 +47,11 @@ const Auth = () => {
               />
             </div>
             <div className="formGroup">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="displayName">Name</label>
               <input
-                type="name"
-                id="name"
-                name="name"
+                type="displayName"
+                id="displayName"
+                name="displayName"
                 required
                 placeholder="Enter your name"
               />
@@ -72,10 +84,13 @@ const Auth = () => {
             <p onClick={() => setIsRegister(false)}>
               Do you have an account? <b>Login</b>
             </p>
-            {error && <p className="error">{error}</p>}
+            {register.error && <p className="error">{register.message}</p>}
           </form>
         ) : (
-          <form key="loginForm">
+          <form
+            key="loginForm"
+            onSubmit={handleSubmit}
+          >
             <div className="formGroup">
               <label htmlFor="email">Email</label>
               <input
@@ -104,7 +119,7 @@ const Auth = () => {
             <p onClick={() => setIsRegister(true)}>
               Don't have an account? <b>Register</b>
             </p>
-            {error && <p className="error">{error}</p>}
+            {login.error && <p className="error">{login.message}</p>}
             <p className="forgotPassword">
               <Link to="/forgot-password">Forgot Password?</Link>
             </p>
