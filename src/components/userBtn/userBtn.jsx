@@ -12,12 +12,13 @@ const UserBtn = () => {
         path="/general/noAvatar.png"
         alt="no-avatar"
       />
-      <Image
-        path="/general/arrow.svg"
-        onClick={() => setOpen((prev) => !prev)}
-        alt="arrow"
-        className="arrow"
-      />
+      <div onClick={() => setOpen((prev) => !prev)}>
+        <Image
+          path="/general/arrow.svg"
+          alt="arrow"
+          className="arrow"
+        />
+      </div>
       {open && (
         <div className="userOptions">
           <div className="userOption">Profile</div>
