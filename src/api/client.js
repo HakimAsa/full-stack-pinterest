@@ -2,7 +2,7 @@ import { create } from 'apisauce'
 
 const client = create({
   baseURL: import.meta.env.VITE_PinRestURL,
-  timeout: 2000,
+  timeout: 5000,
 })
 
 let token = null

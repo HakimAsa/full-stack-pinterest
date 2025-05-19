@@ -58,15 +58,16 @@ const items = [
   },
 ]
 
-const Gallery = ({ searchItem, userId }) => {
+const Gallery = ({ searchItem, userId, boardId }) => {
   const { data, fetchNextPage, hasNextPage, status } = useInfiniteQueryHandler({
     key: 'pins',
-    params: { searchItem, userId },
+    params: { searchItem, userId, boardId },
     apiFunc: ({ pageParam }) =>
       pinApi.getPins({
         cursor: pageParam,
         searchItem: searchItem ?? '',
         userId: userId ?? '',
+        boardId: boardId ?? '',
       }),
     initialPageParam: 0,
     getNextPageParam: function (lastPage, pages) {

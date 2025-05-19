@@ -1,3 +1,6 @@
+import { Link } from 'react-router'
+import { format } from 'timeago.js'
+
 import useFetch from '../../hooks/useFetch'
 import ActivityIndicator from '../loaders/ActivityIndicator'
 import Image from '../image/image'
@@ -18,70 +21,27 @@ const Boards = ({ userId }) => {
         error={error}
       />
     )
-  console.log(boards)
   return (
     <div className="boards">
       {/* BOARD */}
-      <div className="board">
-        <Image
-          path="/pins/pin1.jpeg"
-          alt="pin1"
-        />
-        <div className="boardInfo">
-          <h1>Minimalist bedroom</h1>
-          <span>12 pins . 1w</span>
-        </div>
-      </div>
-      <div className="board">
-        <Image
-          path="/pins/pin1.jpeg"
-          alt="pin1"
-        />
-        <div className="boardInfo">
-          <h1>Minimalist bedroom</h1>
-          <span>12 pins . 1w</span>
-        </div>
-      </div>
-      <div className="board">
-        <Image
-          path="/pins/pin1.jpeg"
-          alt="pin1"
-        />
-        <div className="boardInfo">
-          <h1>Minimalist bedroom</h1>
-          <span>12 pins . 1w</span>
-        </div>
-      </div>
-      <div className="board">
-        <Image
-          path="/pins/pin1.jpeg"
-          alt="pin1"
-        />
-        <div className="boardInfo">
-          <h1>Minimalist bedroom</h1>
-          <span>12 pins . 1w</span>
-        </div>
-      </div>
-      <div className="board">
-        <Image
-          path="/pins/pin1.jpeg"
-          alt="pin1"
-        />
-        <div className="boardInfo">
-          <h1>Minimalist bedroom</h1>
-          <span>12 pins . 1w</span>
-        </div>
-      </div>
-      <div className="board">
-        <Image
-          path="/pins/pin1.jpeg"
-          alt="pin1"
-        />
-        <div className="boardInfo">
-          <h1>Minimalist bedroom</h1>
-          <span>12 pins . 1w</span>
-        </div>
-      </div>
+      {boards?.map((board) => (
+        <Link
+          to={`/search?boardId=${board._id}`}
+          className="board"
+          key={board._id}
+        >
+          <Image
+            src={board?.firstPin?.media || '/pins/pin1.jpeg'}
+            alt={board?.firstPin?.title}
+          />
+          <div className="boardInfo">
+            <h1>{board.title}</h1>
+            <span>
+              {board.pinCount} pins . {format(board.createdAt)}
+            </span>
+          </div>
+        </Link>
+      ))}
     </div>
   )
 }
