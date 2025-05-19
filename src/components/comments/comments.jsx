@@ -1,68 +1,40 @@
 import { useState } from 'react'
 import EmojiPicker from 'emoji-picker-react'
 
-import Image from '../image/image'
 import './comments.css'
+import ActivityIndicator from '../loaders/ActivityIndicator'
+import useFetch from '../../hooks/useFetch'
+import commentApi from '../../api/comments'
+import Comment from '../comments/comment'
 
-const Comments = () => {
+const Comments = ({ pinId }) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
+  const {
+    data: comments,
+    isLoading,
+    error,
+  } = useFetch(commentApi.getPinComments, 'comments', { pinId })
+
+  if (error || isLoading)
+    return (
+      <ActivityIndicator
+        isLoading={isLoading}
+        error={error}
+      />
+    )
   return (
     <div className="comments">
       <div className="commentList">
-        <span className="commentCount">5 comments</span>
+        <span className="commentCount">
+          {comments?.length ? comments?.length + ' comments' : 'No comments'}{' '}
+        </span>
         {/* COMMENT */}
-        <div className="comment">
-          <Image
-            path="/general/noAvatar.png"
-            alt="user-avatar"
+        {comments?.map((comment) => (
+          <Comment
+            key={comment._id}
+            comment={comment}
           />
-          <div className="commentContent">
-            <span className="commentUsername">John Doe</span>
-            <p className="commentText">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            </p>
-            <span className="commentTime">2 days ago</span>
-          </div>
-        </div>
-        <div className="comment">
-          <Image
-            path="/general/noAvatar.png"
-            alt="user-avatar"
-          />
-          <div className="commentContent">
-            <span className="commentUsername">John Doe</span>
-            <p className="commentText">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            </p>
-            <span className="commentTime">2 days ago</span>
-          </div>
-        </div>
-        <div className="comment">
-          <Image
-            path="/general/noAvatar.png"
-            alt="user-avatar"
-          />
-          <div className="commentContent">
-            <span className="commentUsername">John Doe</span>
-            <p className="commentText">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            </p>
-            <span className="commentTime">2 days ago</span>
-          </div>
-        </div>
-        <div className="comment">
-          <Image
-            path="/general/noAvatar.png"
-            alt="user-avatar"
-          />
-          <div className="commentContent">
-            <span className="commentUsername">John Doe</span>
-            <p className="commentText">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            </p>
-            <span className="commentTime">2 days ago</span>
-          </div>
-        </div>
+        ))}
       </div>
       <form
         className="commentForm"

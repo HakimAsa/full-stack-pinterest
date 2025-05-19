@@ -50,7 +50,7 @@ const Post = () => {
             <Image src={pin?.user?.profilePicture || '/general/noAvatar.png'} />
             <span>{pin?.user?.displayName}</span>
           </Link>
-          <Comments />
+          <Comments pinId={pin._id} />
         </div>
       </div>
     </div>
