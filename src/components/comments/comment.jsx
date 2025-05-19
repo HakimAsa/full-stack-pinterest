@@ -1,4 +1,3 @@
-import './comments.css'
 import { format } from 'timeago.js'
 
 import Image from '../image/image'

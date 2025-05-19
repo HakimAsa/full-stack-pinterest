@@ -1,14 +1,11 @@
-import { useState } from 'react'
-import EmojiPicker from 'emoji-picker-react'
-
 import './comments.css'
 import ActivityIndicator from '../loaders/ActivityIndicator'
 import useFetch from '../../hooks/useFetch'
 import commentApi from '../../api/comments'
 import Comment from '../comments/comment'
+import CommentForm from './commentForm'
 
 const Comments = ({ pinId }) => {
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   const {
     data: comments,
     isLoading,
@@ -36,23 +33,7 @@ const Comments = ({ pinId }) => {
           />
         ))}
       </div>
-      <form
-        className="commentForm"
-        action=""
-      >
-        <input
-          type="text"
-          placeholder="Add a comment"
-        />
-        <div className="emoji">
-          <div onClick={() => setShowEmojiPicker((prev) => !prev)}>😊</div>
-          {showEmojiPicker && (
-            <div className="emojiPicker">
-              <EmojiPicker />
-            </div>
-          )}
-        </div>
-      </form>
+      <CommentForm />
     </div>
   )
 }
