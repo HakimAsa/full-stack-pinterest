@@ -2,16 +2,31 @@ import { useState } from 'react'
 import EmojiPicker from 'emoji-picker-react'
 import useApi from '../../hooks/useApi'
 import commentApi from '../../api/comments'
+import { useMutationHandler } from '../../hooks/useMutationHandler'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useParams } from 'react-router'
 
 const CommentForm = ({ pinId }) => {
-  const comment = useApi(commentApi.addComment)
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   const [desc, setDesc] = useState('')
+  const routeParams = useParams()
 
-  const handleEmojiClick = (emoji) => {
-    setDesc((prev) => prev + ' ' + emoji.emoji)
-    setShowEmojiPicker(false)
-  }
+  const queryClient = useQueryClient()
+
+  const commentMutation = useMutation({
+    // Merge in the real comment from the server
+    mutationFn: commentApi.addComment,
+    onSuccess: (response) => {
+      const queryKey = ['comments', JSON.stringify({ ...routeParams, pinId })]
+      console.log('mutation queryKey:', response)
+      queryClient.invalidateQueries({ queryKey })
+      setDesc('')
+      setShowEmojiPicker(false)
+    },
+    onError: (error) => {
+      console.error('Mutation failed', error)
+    },
+  })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -20,8 +35,12 @@ const CommentForm = ({ pinId }) => {
       description: desc,
       pin: pinId,
     }
-    const res = await comment.request(data)
-    if (!res?.ok) return
+    commentMutation.mutate({ ...data })
+  }
+
+  const handleEmojiClick = (emoji) => {
+    setDesc((prev) => prev + ' ' + emoji.emoji)
+    setShowEmojiPicker(false)
   }
 
   return (
