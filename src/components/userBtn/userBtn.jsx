@@ -34,7 +34,12 @@ const UserBtn = () => {
       </div>
       {open && (
         <div className="userOptions">
-          <div className="userOption">Profile</div>
+          <Link
+            to={`/profile/${currentUser.username}`}
+            className="userOption"
+          >
+            Profile
+          </Link>
           <div className="userOption">Setting</div>
           <div
             className="userOption"

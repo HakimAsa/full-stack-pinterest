@@ -34,7 +34,7 @@ const Comments = ({ pinId }) => {
         ))}
       </div>
       {/* COMMENT FORM */}
-      <CommentForm />
+      <CommentForm pinId={pinId} />
     </div>
   )
 }

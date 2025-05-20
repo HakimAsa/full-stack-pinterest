@@ -10,6 +10,10 @@ const getPinComments = async ({ pinId, query = {} }) => {
   return data
 }
 
+//add comment api
+const addComment = (data) => callServer(dsf(COMMENTS), HM.POST, data)
+
 export default {
+  addComment,
   getPinComments,
 }
