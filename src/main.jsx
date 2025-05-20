@@ -31,7 +31,7 @@ createRoot(document.getElementById('root')).render(
               element={<Create />}
             />
             <Route
-              path="/pin/:id"
+              path="/pin/:pinId"
               element={<Post />}
             />
 

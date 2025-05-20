@@ -17,8 +17,7 @@ const CommentForm = ({ pinId }) => {
     // Merge in the real comment from the server
     mutationFn: commentApi.addComment,
     onSuccess: (response) => {
-      const queryKey = ['comments', JSON.stringify({ ...routeParams, pinId })]
-      console.log('mutation queryKey:', response)
+      const queryKey = ['comments', { pinId }]
       queryClient.invalidateQueries({ queryKey })
       setDesc('')
       setShowEmojiPicker(false)

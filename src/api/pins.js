@@ -9,8 +9,8 @@ const getPins = async (query = {}) => {
   const { data } = await callServer(dsf(PINS), HM.GET, false, query)
   return data
 }
-const getPin = async ({ id, params = {} }) => {
-  const { data } = await callServer(dsf(PINS, id), HM.GET, false, params)
+const getPin = async ({ pinId, params = {} }) => {
+  const { data } = await callServer(dsf(PINS, pinId), HM.GET, false, params)
   return data
 }
 
