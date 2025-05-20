@@ -13,6 +13,7 @@ const Auth = () => {
 
   const register = useApi(authApi.registerUser)
   const login = useApi(authApi.loginUser)
+  const me = useApi(authApi.getMe)
   const { setCurrentUser } = useAuthStore()
 
   const handleSubmit = async (e) => {
@@ -24,6 +25,10 @@ const Auth = () => {
       ? await register.request(data)
       : await login.request(data)
     if (!res?.ok) return
+    // Call /api/me to fetch the authenticated user info
+    const meRes = await me.request()
+
+    if (!meRes?.ok) return // handle failure if needed
     setCurrentUser(res.data)
     navigate('/')
   }
@@ -125,7 +130,9 @@ const Auth = () => {
             <p onClick={() => setIsRegister(true)}>
               Don't have an account? <b>Register</b>
             </p>
-            {login.error && <p className="error">{login.message}</p>}
+            {(login.error || me.error) && (
+              <p className="error">{login.message || me.message}</p>
+            )}
             <p className="forgotPassword">
               <Link to="/forgot-password">Forgot Password?</Link>
             </p>

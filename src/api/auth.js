@@ -2,9 +2,10 @@ import callServer from '../utils/callServer'
 import { doSetForwardslash as dsf } from '../utils/helpers'
 import endpoints from '../utils/endpoints'
 import HM from '../utils/httpMethods'
-import client from './client'
 
-const { AUTH, LOGIN, LOGOUT, REGISTER, USERS } = endpoints
+const { AUTH, LOGIN, LOGOUT, ME, REGISTER, USERS } = endpoints
+
+const getMe = () => callServer(dsf(USERS, ME), HM.GET)
 
 const getUser = async ({ username, params = {} }) => {
   const { data } = await callServer(dsf(USERS, username), HM.GET, false, params)
@@ -21,6 +22,7 @@ const loginUser = (data) => callServer(dsf(USERS, AUTH, LOGIN), HM.POST, data)
 const logoutUser = () => callServer(dsf(USERS, AUTH, LOGOUT), HM.POST)
 
 export default {
+  getMe,
   getUser,
   loginUser,
   logoutUser,

@@ -28,11 +28,10 @@ export const callServerError = (error) => {
 
   if (error.response?.message) return error.response.message
 
-  console.log('error', error)
-
   return (
     (error.message && error.message) ||
-    error.data.message ||
-    error.data.errorMessage
+    error.data?.message ||
+    error.data?.errorMessage ||
+    error.originalError.message
   )
 }

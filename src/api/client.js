@@ -6,23 +6,11 @@ const client = create({
   timeout: 5000,
 })
 
-let token = null
-
-export const setAuthToken = (authToken) => {
-  token = authToken
-}
-
-//transform the request
-client.addAsyncRequestTransform(async (request) => {
-  if (!token) return
-  request.headers['Authorization'] = `Bearer ${token}`
-  request.headers['x-auth-token'] = token
-})
-
 //transform the response
 client.addAsyncResponseTransform(async (response) => {
   if (!response.ok && response.status === 401) {
     console.info('401 Error:', response)
+    return response.data
     // e.g. await refreshToken()
     // retry logic, or redirect to login
   }
