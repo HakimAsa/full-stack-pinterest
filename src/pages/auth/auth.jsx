@@ -5,6 +5,7 @@ import PrimaryBtn from '../../components/button/primaryBtn'
 import { Link, useNavigate } from 'react-router'
 import authApi from '../../api/auth'
 import useApi from '../../hooks/useApi'
+import useAuthStore from '../../store/authStore'
 
 const Auth = () => {
   const [isRegister, setIsRegister] = useState(false)
@@ -12,13 +13,18 @@ const Auth = () => {
 
   const register = useApi(authApi.registerUser)
   const login = useApi(authApi.loginUser)
+  const { setCurrentUser } = useAuthStore()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     // Handle form submission logic here
     const formData = new FormData(e.target)
     const data = Object.fromEntries(formData)
-    isRegister ? await register.request(data) : await login.request(data)
+    const res = isRegister
+      ? await register.request(data)
+      : await login.request(data)
+    if (!res?.ok) return
+    setCurrentUser(res.data)
     navigate('/')
   }
   return (

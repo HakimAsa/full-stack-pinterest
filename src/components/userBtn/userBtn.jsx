@@ -3,20 +3,23 @@ import './userBtn.css'
 import Image from '../image/image'
 import authApi from '../../api/auth'
 import useApi from '../../hooks/useApi'
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import useAuthStore from '../../store/authStore'
 
 const UserBtn = () => {
   const [open, setOpen] = useState(false)
   const logout = useApi(authApi.logoutUser)
   const navigate = useNavigate()
+  const { currentUser } = useAuthStore()
+
+  console.log(currentUser)
 
   const handleLogout = async () => {
     const res = await logout.request()
     if (!res?.ok) return
     navigate('/auth')
   }
-  //TEMP USER BEFORE BACKEND INTEGRATION
-  const currentUser = true
+
   return currentUser ? (
     <div className="userBtn">
       <Image
@@ -44,12 +47,12 @@ const UserBtn = () => {
       )}
     </div>
   ) : (
-    <a
-      href="/"
+    <Link
+      to="/auth"
       className="loginLink"
     >
       Login/Sign Up
-    </a>
+    </Link>
   )
 }
 
