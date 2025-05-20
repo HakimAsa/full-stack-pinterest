@@ -10,20 +10,19 @@ const UserBtn = () => {
   const [open, setOpen] = useState(false)
   const logout = useApi(authApi.logoutUser)
   const navigate = useNavigate()
-  const { currentUser } = useAuthStore()
-
-  console.log(currentUser)
+  const { currentUser, removeCurrentUser } = useAuthStore()
 
   const handleLogout = async () => {
     const res = await logout.request()
     if (!res?.ok) return
+    removeCurrentUser()
     navigate('/auth')
   }
 
   return currentUser ? (
     <div className="userBtn">
       <Image
-        path="/general/noAvatar.png"
+        src={currentUser.profilePicture || '/general/noAvatar.png'}
         alt="no-avatar"
       />
       <div onClick={() => setOpen((prev) => !prev)}>

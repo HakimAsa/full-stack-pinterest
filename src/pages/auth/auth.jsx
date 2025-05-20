@@ -29,7 +29,7 @@ const Auth = () => {
     const meRes = await me.request()
 
     if (!meRes?.ok) return // handle failure if needed
-    setCurrentUser(res.data)
+    setCurrentUser(meRes.data?.data)
     navigate('/')
   }
   return (
