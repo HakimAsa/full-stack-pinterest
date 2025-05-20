@@ -1,9 +1,20 @@
 import { useState } from 'react'
 import './userBtn.css'
 import Image from '../image/image'
+import authApi from '../../api/auth'
+import useApi from '../../hooks/useApi'
+import { useNavigate } from 'react-router'
 
 const UserBtn = () => {
   const [open, setOpen] = useState(false)
+  const logout = useApi(authApi.logoutUser)
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    const res = await logout.request()
+    if (!res?.ok) return
+    navigate('/auth')
+  }
   //TEMP USER BEFORE BACKEND INTEGRATION
   const currentUser = true
   return currentUser ? (
@@ -23,7 +34,12 @@ const UserBtn = () => {
         <div className="userOptions">
           <div className="userOption">Profile</div>
           <div className="userOption">Setting</div>
-          <div className="userOption">Logout</div>
+          <div
+            className="userOption"
+            onClick={handleLogout}
+          >
+            Logout
+          </div>
         </div>
       )}
     </div>
