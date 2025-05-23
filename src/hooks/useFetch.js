@@ -7,7 +7,7 @@ export default function useFetch(apiFunc, key = 'data', otherParams) {
   const combinedParams = { ...routeParams, ...otherParams } // external overrides route
 
   const { data, isLoading, error } = useQueryHandler({
-    key: [key, combinedParams],
+    key: [key, combinedParams?.pinId],
     apiFunc: () => apiFunc(combinedParams),
     params: combinedParams,
   })

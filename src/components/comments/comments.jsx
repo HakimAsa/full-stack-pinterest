@@ -4,13 +4,14 @@ import useFetch from '../../hooks/useFetch'
 import commentApi from '../../api/comments'
 import Comment from '../comments/comment'
 import CommentForm from './commentForm'
+import { commentKeys } from '../../utils/queryKeys'
 
 const Comments = ({ pinId }) => {
   const {
     data: comments,
     isLoading,
     error,
-  } = useFetch(commentApi.getPinComments, 'comments', { pinId })
+  } = useFetch(commentApi.getPinComments, commentKeys.all[0])
 
   if (error || isLoading)
     return (
@@ -19,6 +20,7 @@ const Comments = ({ pinId }) => {
         error={error}
       />
     )
+
   return (
     <div className="comments">
       <div className="commentList">
