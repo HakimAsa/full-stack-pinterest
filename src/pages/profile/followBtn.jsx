@@ -1,7 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query'
 
 import PrimaryBtn from '../../components/button/primaryBtn'
-import useFetch from '../../hooks/useFetch'
 import authApi from '../../api/auth'
 import { useMutationHandler } from '../../hooks/useMutationHandler'
 import { profileKeys } from '../../utils/queryKeys'
