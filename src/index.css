@@ -2,8 +2,8 @@
   --primary: #e50829;
   --primary-hover: #c1011e;
   --secondary: #6c757d;
-  --background: #f8f9fa;
-  --hover: #f1f1f1;
+  --background: rgb(241, 241, 241);
+  --hover: rgb(241, 241, 241);
 }
 * {
   box-sizing: border-box;
