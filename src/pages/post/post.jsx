@@ -18,6 +18,7 @@ const Post = () => {
         isLoading={isLoading}
       />
     )
+  if (!pin) return <p style={{ color: 'red' }}>Network Error</p>
 
   return (
     <div className="post">

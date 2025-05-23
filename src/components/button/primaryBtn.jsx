@@ -1,6 +1,6 @@
 import './primaryBtn.css'
 
-const PrimaryBtn = ({ text, style, props }) => {
+const PrimaryBtn = ({ text, style, ...props }) => {
   return (
     <button
       {...props}

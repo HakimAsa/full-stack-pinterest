@@ -8,6 +8,7 @@ import Gallery from '../../components/gallery/gallery'
 import authApi from '../../api/auth'
 import useFetch from '../../hooks/useFetch'
 import ActivityIndicator from '../../components/loaders/ActivityIndicator'
+import FollowBtn from './followBtn'
 
 const buttonStyle = {
   backgroundColor: '#f1f1f1',
@@ -42,7 +43,10 @@ const Profile = () => {
       />
       <h1 className="profileName">{profile.displayedName}</h1>
       <span className="profileUsername">@{profile.username}</span>
-      <div className="followCounts">10 followers . 20 following</div>
+      <div className="followCounts">
+        {profile.followerCount || 0} followers . {profile.followingCount || 0}{' '}
+        followings
+      </div>
       <div className="profileInteractions">
         <div className="imgContainer">
           <Image
@@ -55,7 +59,10 @@ const Profile = () => {
             text="Messages"
             style={buttonStyle}
           />
-          <PrimaryBtn text="Follow" />
+          <FollowBtn
+            username={profile.username}
+            isFollowing={profile.isFollowing}
+          />
         </div>
         <div className="imgContainer">
           <Image

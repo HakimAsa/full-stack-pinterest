@@ -4,6 +4,7 @@ export default {
   COMMENTS: 'comments',
   CREATE_PIN: 'create-pin',
   CREATE_USER: 'create-user',
+  FOLLOW: 'follow',
   FORWARDSLASH: '/',
   LOGIN: 'login',
   LOGOUT: 'logout',
