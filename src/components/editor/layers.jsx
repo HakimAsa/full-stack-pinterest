@@ -3,7 +3,8 @@ import Image from '../image/image'
 import useEditorStore from '../../store/editorStore'
 
 const Layers = ({ previewImg }) => {
-  const { addText, selectedLayer, setSelectedLayer } = useEditorStore()
+  const { addText, selectedLayer, setSelectedLayer, canvasOptions } =
+    useEditorStore()
   const handleSelectedLayer = (layer) => {
     setSelectedLayer(layer)
     if (layer === 'text') {
@@ -36,7 +37,7 @@ const Layers = ({ previewImg }) => {
       >
         <div
           className="layerImage"
-          style={{ backgroundColor: 'teal' }}
+          style={{ backgroundColor: canvasOptions.backgroundColor }}
         ></div>
         <span>Canvas</span>
       </div>
