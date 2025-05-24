@@ -3,9 +3,12 @@ import Image from '../image/image'
 import useEditorStore from '../../store/editorStore'
 
 const Layers = ({ previewImg }) => {
-  const { selectedLayer, setSelectedLayer } = useEditorStore()
+  const { addText, selectedLayer, setSelectedLayer } = useEditorStore()
   const handleSelectedLayer = (layer) => {
     setSelectedLayer(layer)
+    if (layer === 'text') {
+      addText()
+    }
   }
   return (
     <div className="layers">
