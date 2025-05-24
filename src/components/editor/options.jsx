@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const Options = () => {
-  return <div>Options</div>
+  return <div className="options">Options</div>
 }
 
 export default Options
