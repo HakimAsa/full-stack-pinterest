@@ -40,7 +40,6 @@ const WorkSpace = ({ previewImg }) => {
   }
   const handleMouseUp = (e) => {
     dragging.current = false
-    console.log('On mouse Up', e)
   }
   const handleMouseLeave = (e) => {
     dragging.current = false

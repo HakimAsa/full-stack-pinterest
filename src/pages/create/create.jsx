@@ -1,18 +1,30 @@
 import { useNavigate } from 'react-router'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import './create.css'
 import PrimaryBtn from '../../components/button/primaryBtn'
 import IKImage from '../../components/image/image'
 import useAuthStore from '../../store/authStore'
 import Editor from '../../components/editor/editor'
+import useEditorStore from '../../store/editorStore'
+import useApi from '../../hooks/useApi'
+import pinApi from '../../api/pins'
+import ActivityIndicator, {
+  ErrorMessage,
+  Loader,
+} from '../../components/loaders/ActivityIndicator'
 
 const Create = () => {
   const { currentUser } = useAuthStore()
+  const { textOptions, canvasOptions } = useEditorStore()
   const navigate = useNavigate()
+  const pin = useApi(pinApi.postPin)
   const [file, setFile] = useState(null)
   const [previewImg, setPreviewImg] = useState({ url: '', width: 0, height: 0 })
   const [isEditing, setIsEditing] = useState(false)
+
+  //ref form
+  const formRef = useRef()
 
   useEffect(() => {
     if (!currentUser) navigate('/auth')
@@ -32,11 +44,36 @@ const Create = () => {
     }
   }, [file])
 
+  const handleSubmit = async () => {
+    if (isEditing) {
+      setIsEditing(false)
+    } else {
+      //post the pin to the server
+      const formData = new FormData(formRef.current)
+      formData.append('media', file)
+      formData.append('textOptions', JSON.stringify(textOptions, null, 2))
+      formData.append('canvasOptions', JSON.stringify(canvasOptions, null, 2))
+      const res = await pin.request(formData)
+      if (!res?.ok) return
+
+      navigate(`/pin/${res.data.data._id}`)
+    }
+  }
+
+  if (pin.loading) return <Loader loading={pin.loading} />
+
   return (
     <div className="create">
       <div className="createTop">
+        <ErrorMessage
+          visible={pin.error}
+          error={pin.message}
+        />
         <h1>{isEditing ? 'Design your Pin' : 'Create Pin'}</h1>
-        <PrimaryBtn text={isEditing ? 'Done' : 'Publish'} />
+        <PrimaryBtn
+          onClick={handleSubmit}
+          text={isEditing ? 'Done' : 'Publish'}
+        />
       </div>
       {isEditing ? (
         <Editor previewImg={previewImg} />
@@ -87,7 +124,7 @@ const Create = () => {
 
           <form
             className="createForm"
-            action=""
+            ref={formRef}
           >
             <div className="createFormItem">
               <label htmlFor="title">Title</label>
@@ -122,7 +159,7 @@ const Create = () => {
                 name="board"
                 id="board"
               >
-                <option>Choose a board</option>
+                <option value="">Choose a board</option>
                 <option value="board1">Board 1</option>
                 <option value="board2">Board 2</option>
                 <option value="board3">Board 3</option>

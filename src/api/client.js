@@ -3,7 +3,7 @@ import { create } from 'apisauce'
 const client = create({
   baseURL: import.meta.env.VITE_PinRestURL,
   withCredentials: true,
-  timeout: 5000,
+  // timeout: 5000,
 })
 
 //transform the response

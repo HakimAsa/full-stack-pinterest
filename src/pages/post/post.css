@@ -24,6 +24,7 @@
 .postImage {
   flex: 1;
   background-color: #c0a68c;
+  width: 375px;
 }
 .postImage img {
   width: 100%;

@@ -37,7 +37,7 @@ const Post = () => {
       <div className="postContainer">
         <div className="postImage">
           <Image
-            src={pin.media}
+            path={pin.media}
             alt={pin.title}
             width={736}
           />

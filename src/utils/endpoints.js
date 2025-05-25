@@ -2,7 +2,7 @@ export default {
   AUTH: 'auth',
   BOARDS: 'boards',
   COMMENTS: 'comments',
-  CREATE_PIN: 'create-pin',
+  CREATE: 'create',
   CREATE_USER: 'create-user',
   FOLLOW: 'follow',
   FORWARDSLASH: '/',
