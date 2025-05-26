@@ -58,8 +58,8 @@ const leftBar = () => {
         href="/"
         className="menuIcon"
       >
-        <img
-          src="/general/settings.svg"
+        <Image
+          path="/general/settings.svg"
           alt="settings"
         />
       </a>
