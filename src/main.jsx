@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
 import './index.css'
-import RootLayout from './pages/layout/rootLayout.jsx'
+import RootLayout from './pages/layout/rootLayout'
 
 // Create a client
 const queryClient = new QueryClient()
