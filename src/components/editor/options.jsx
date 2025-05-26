@@ -32,16 +32,19 @@ const Options = ({ previewImg }) => {
 
   const canvasWidth = 375
 
+  const originalOrientation =
+    previewImg.width > previewImg.height ? 'landscape' : 'portrait'
+
   const handleSizeClick = (size) => {
     let canvasHeight
 
     if (size === 'original') {
-      //portait orientation check
-      if (canvasOptions.orientation === 'portrait') {
-        canvasHeight = (canvasWidth * previewImg.width) / previewImg.height
+      //portait/landscape orientation check
+      if (originalOrientation === canvasOptions.orientation) {
+        canvasHeight = (canvasWidth * previewImg.height) / previewImg.width
       } else {
         //we're in landscape
-        canvasHeight = (canvasWidth * previewImg.height) / previewImg.width
+        canvasHeight = (canvasWidth * previewImg.width) / previewImg.height
       }
     } else {
       //calculte canvasHeight
@@ -54,13 +57,16 @@ const Options = ({ previewImg }) => {
     })
   }
   const handleOrientationClick = (orientation) => {
-    const canvasHeight =
-      orientation === 'portrait'
-        ? (canvasWidth * previewImg.width) / previewImg.height
-        : (canvasWidth * previewImg.height) / previewImg.width
+    let newCanvasHeight
+    if (originalOrientation === orientation) {
+      newCanvasHeight = (canvasWidth * previewImg.height) / previewImg.width
+    } else {
+      newCanvasHeight = (canvasWidth * previewImg.width) / previewImg.height
+    }
+
     setCanvasOptions({
       ...canvasOptions,
-      height: canvasHeight,
+      height: newCanvasHeight,
       size: 'original',
       orientation,
     })
