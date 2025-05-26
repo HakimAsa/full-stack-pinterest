@@ -1,8 +1,37 @@
-# React + Vite
+# Pinterest clone with React + Vite + CSS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Pinterest Clone
 
-Currently, two official plugins are available:
+# This project is a Pinterest clone built with React, Vite, and CSS. It allows users to create and manage boards, add pins, and explore content similar to Pinterest.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Features
+
+# - User authentication (sign up, log in, log out)
+
+# - Create and manage boards
+
+# - Add and manage pins
+
+# - Explore content and search for pins
+
+# - Responsive design
+
+# Technologies Used
+
+# - React
+
+# - Vite
+
+# - CSS
+
+# - React Router
+
+# - Apisauce for API requests
+
+# - Tanstack Query for data fetching and caching
+
+# Getting Started
+
+# 1. Clone the repository:
+
+# git clone
