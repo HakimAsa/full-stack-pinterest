@@ -31,7 +31,7 @@ const Boards = ({ userId }) => {
           key={board._id}
         >
           <Image
-            src={board?.firstPin?.media || '/pins/pin1.jpeg'}
+            path={board?.firstPin?.media || '/pins/pin1.jpeg'}
             alt={board?.firstPin?.title}
           />
           <div className="boardInfo">
