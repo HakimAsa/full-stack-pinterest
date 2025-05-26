@@ -1,37 +1,46 @@
-# Pinterest clone with React + Vite + CSS
+# 🖼️ Pinterest Clone Frontend
 
-# Pinterest Clone
+A modern and responsive frontend for a Pinterest-like application built with **React**, **Vite**, **Zustand**, and **TanStack Query**. Users can sign up, log in, create pins, add comments, like and save pins.
 
-# This project is a Pinterest clone built with React, Vite, and CSS. It allows users to create and manage boards, add pins, and explore content similar to Pinterest.
+---
 
-# Features
+## 🌐 Live Site
 
-# - User authentication (sign up, log in, log out)
+[https://your-frontend-url.com](https://your-frontend-url.com)
 
-# - Create and manage boards
+> Make sure the backend API is running and accessible:
+> [Pinterest Clone API](https://your-backend-url.com/api)
 
-# - Add and manage pins
+---
 
-# - Explore content and search for pins
+## ⚙️ Tech Stack
 
-# - Responsive design
+- **Framework**: [React](https://reactjs.org/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **State Management**: [Zustand](https://zustand-demo.pmnd.rs/)
+- **Data Fetching**: [TanStack Query (React Query)](https://tanstack.com/query/v4)
+- **HTTP Client**: apisauce
+- **Styling**: CSS
+- **Routing**: React Router
 
-# Technologies Used
+---
 
-# - React
+## 🚀 Features
 
-# - Vite
+- 📝 Sign up and Log in
+- 📸 Create a Pin (with image URL)
+- 💬 Add Comments
+- ❤️ Like Pins
+- 💾 Save Pins
+- 🧑 View Pins by User
+- 🔍 Search Pins (if on the way)
 
-# - CSS
+---
 
-# - React Router
+## 📦 Installation
 
-# - Apisauce for API requests
-
-# - Tanstack Query for data fetching and caching
-
-# Getting Started
-
-# 1. Clone the repository:
-
-# git clone
+```bash
+git clone https://github.com/HakimAsa/full-stack-pinterest.git .
+npm install
+npm run dev
+```
