@@ -13,7 +13,7 @@ const queryClient = new QueryClient()
 const Home = lazy(() => import('./pages/home/home'))
 const Create = lazy(() => import('./pages/create/create'))
 const Post = lazy(() => import('./pages/post/post'))
-const Search = lazy(() => import('./pages/search/Search'))
+const Search = lazy(() => import('./pages/search/search'))
 const Auth = lazy(() => import('./pages/auth/auth'))
 const Profile = lazy(() => import('./pages/profile/profile'))
 
