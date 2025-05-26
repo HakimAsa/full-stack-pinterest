@@ -6,6 +6,8 @@ export default {
   CREATE_USER: 'create-user',
   FOLLOW: 'follow',
   FORWARDSLASH: '/',
+  INTERACT: 'interact',
+  INTERACTIONS_CHECK: 'interactions-check',
   LOGIN: 'login',
   LOGOUT: 'logout',
   ME: 'me',

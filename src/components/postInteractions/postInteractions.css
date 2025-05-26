@@ -9,13 +9,21 @@
   display: flex;
   gap: 8px;
 }
-.postInteractions .interactionIcons img {
+.postInteractions .interactionIcons img,
+svg {
   border-radius: 50%;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
   padding: 8px;
   transition: background 0.2s, padding 0.2s;
 }
+.postInteractions .interactionIcons .reacted {
+  color: var(--primary);
+}
 
-.postInteractions .interactionIcons img:hover {
+.postInteractions .interactionIcons img:hover,
+svg:hover {
   background-color: var(--hover);
   padding: 8px;
 }

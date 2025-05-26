@@ -43,7 +43,7 @@ const Post = () => {
           />
         </div>
         <div className="postDetails">
-          <PostInteractions />
+          <PostInteractions pinId={pin._id} />
           <Link
             to={`/${pin?.user?.username}`}
             className="postUser"
