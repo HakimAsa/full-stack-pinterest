@@ -6,10 +6,10 @@ A modern and responsive frontend for a Pinterest-like application built with **R
 
 ## 🌐 Live Site
 
-[https://your-frontend-url.com](https://your-frontend-url.com)
+[https://full-stack-pinterest.onrender.com/](https://full-stack-pinterest.onrender.com)
 
 > Make sure the backend API is running and accessible:
-> [Pinterest Clone API](https://your-backend-url.com/api)
+> [Pinterest Clone API](https://pinterestapi-a6zo.onrender.com)
 
 ---
 

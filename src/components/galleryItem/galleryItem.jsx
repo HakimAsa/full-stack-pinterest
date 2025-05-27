@@ -4,8 +4,8 @@ import './galleryItem.css'
 import Image from '../image/image'
 
 const GalleryItem = ({ item }) => {
-  const minWidth = 372 //breakpoint on mobile
-  const optimizedHeight = (minWidth * item.height) / item.width
+  // const minWidth = 372 //breakpoint on mobile
+  // const optimizedHeight = (minWidth * item.height) / item.width
   return (
     <div
       className="galleryItem"
