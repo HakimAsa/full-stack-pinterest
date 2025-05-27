@@ -14,8 +14,7 @@ const GalleryItem = ({ item }) => {
       <Image
         alt={'item' + item._id}
         path={item.media}
-        width={minWidth}
-        height={optimizedHeight}
+        className="gallery-img"
       />
       <Link
         to={`/pin/${item._id}`}

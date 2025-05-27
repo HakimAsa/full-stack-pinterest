@@ -3,10 +3,12 @@
   position: relative;
 }
 
-.galleryItem img {
+.gallery-img {
   width: 100%;
   border-radius: 16px;
+  height: auto; /* Ensures aspect ratio is respected */
   object-fit: cover;
+  display: block;
 }
 
 .galleryItem:hover .overlay {

@@ -27,6 +27,7 @@ const Post = () => {
         viewBox="0 0 25 25"
         width="20"
         height="20"
+        strokeWidth="2"
         style={{ cursor: 'pointer', fill: '#232326' }}
       >
         <path
