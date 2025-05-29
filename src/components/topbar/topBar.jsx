@@ -13,6 +13,7 @@ const TopBar = () => {
   return (
     <div className="topBar">
       {/* SEARCH */}
+
       <form
         onSubmit={handleSubmit}
         className="search"

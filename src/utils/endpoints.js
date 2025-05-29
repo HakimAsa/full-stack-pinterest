@@ -12,6 +12,7 @@ export default {
   LOGOUT: 'logout',
   ME: 'me',
   PINS: 'pins',
+  REFRESH_TOKEN: 'resfresh-token',
   REGISTER: 'register',
   USERS: 'users',
   USERNAME: 'username',

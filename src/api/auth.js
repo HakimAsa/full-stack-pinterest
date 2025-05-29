@@ -3,7 +3,8 @@ import { doSetForwardslash as dsf } from '../utils/helpers'
 import endpoints from '../utils/endpoints'
 import HM from '../utils/httpMethods'
 
-const { AUTH, FOLLOW, LOGIN, LOGOUT, ME, REGISTER, USERS } = endpoints
+const { AUTH, FOLLOW, LOGIN, LOGOUT, ME, REFRESH_TOKEN, REGISTER, USERS } =
+  endpoints
 
 const getMe = () => callServer(dsf(USERS, ME), HM.GET)
 
@@ -31,6 +32,8 @@ const registerUser = (data) =>
 const loginUser = (data) => callServer(dsf(USERS, AUTH, LOGIN), HM.POST, data)
 //log user out
 const logoutUser = () => callServer(dsf(USERS, AUTH, LOGOUT), HM.POST)
+// refresh token
+const refreshToken = () => callServer(dsf(USERS, AUTH, REFRESH_TOKEN), HM.POST)
 
 export default {
   followUser,
@@ -38,5 +41,6 @@ export default {
   getUser,
   loginUser,
   logoutUser,
+  refreshToken,
   registerUser,
 }

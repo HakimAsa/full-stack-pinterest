@@ -1,5 +1,8 @@
 import { create } from 'apisauce'
 
+import authApi from './auth'
+import useAuthStore from '../store/authStore'
+
 const client = create({
   baseURL: import.meta.env.VITE_PinRestURL,
   withCredentials: true,
@@ -8,11 +11,23 @@ const client = create({
 
 //transform the response
 client.addAsyncResponseTransform(async (response) => {
-  if (!response.ok && response.status === 401) {
-    console.info('401 Error:', response)
-    return response.data
-    // e.g. await refreshToken()
-    // retry logic, or redirect to login
+  const originalRequest = response.config
+
+  if (!response.ok && response.status === 401 && !originalRequest._retry) {
+    originalRequest._retry = true
+
+    try {
+      const refreshRes = await authApi.refreshToken()
+      if (refreshRes.ok) {
+        // retry the original request using axiosInstance directly
+        return await client.axiosInstance(originalRequest)
+      }
+      // Refresh failed - force logout
+      useAuthStore.getState().removeCurrentUser() // clear user
+    } catch (error) {
+      console.error('Refresh failed:', error)
+      useAuthStore.getState().removeCurrentUser() // clear user
+    }
   }
 
   if (!response?.ok) {

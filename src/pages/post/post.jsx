@@ -39,7 +39,7 @@ const Post = () => {
         <div className="postImage">
           <Image
             path={pin.media}
-            alt={pin.title}
+            alt={'pin' + pin._id}
             width={736}
           />
         </div>
