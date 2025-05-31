@@ -36,7 +36,7 @@ const Gallery = ({ searchItem, userId, boardId }) => {
       dataLength={allPins.length}
       next={fetchNextPage}
       hasMore={!!hasNextPage}
-      loader={<h4>loading more pins...</h4>}
+      loader={<h4>Loading more pins...</h4>}
       endMessage={<h3>All Pins loaded!</h3>}
     >
       <div className="gallery">
