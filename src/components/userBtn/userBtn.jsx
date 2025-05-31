@@ -14,7 +14,10 @@ const UserBtn = () => {
 
   const handleLogout = async () => {
     const res = await logout.request()
-    if (!res?.ok) return
+    if (!res?.ok || !currentUser) {
+      navigate('/auth')
+      return
+    }
     removeCurrentUser()
     navigate('/auth')
   }

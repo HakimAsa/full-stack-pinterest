@@ -16,8 +16,8 @@ const Gallery = ({ searchItem, userId, boardId }) => {
         userId: userId ?? '',
         boardId: boardId ?? '',
       }),
-    initialPageParam: 0,
-    getNextPageParam: function (lastPage, pages) {
+    initialPageParam: null,
+    getNextPageParam: function (lastPage) {
       return lastPage.nextCursor
     },
   })
@@ -40,12 +40,13 @@ const Gallery = ({ searchItem, userId, boardId }) => {
       endMessage={<h3>All Pins loaded!</h3>}
     >
       <div className="gallery">
-        {allPins?.map((item) => (
-          <GalleryItem
-            key={item?._id.toString()}
-            item={item}
-          />
-        ))}
+        {allPins?.length > 0 &&
+          allPins.map((item) => (
+            <GalleryItem
+              key={item._id.toString()}
+              item={item}
+            />
+          ))}
       </div>
     </InfinitScroll>
   )

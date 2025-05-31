@@ -13,6 +13,9 @@ const client = create({
 client.addAsyncResponseTransform(async (response) => {
   const originalRequest = response.config
 
+  // 🛡️ Prevent retry on the refresh endpoint itself
+  if (originalRequest.url.includes('/auth/refresh')) return
+
   if (!response.ok && response.status === 401 && !originalRequest._retry) {
     originalRequest._retry = true
 
@@ -20,7 +23,14 @@ client.addAsyncResponseTransform(async (response) => {
       const refreshRes = await authApi.refreshToken()
       if (refreshRes.ok) {
         // retry the original request using axiosInstance directly
-        return await client.axiosInstance(originalRequest)
+        // 🛡️ Retry without re-triggering transforms
+        const retriedResponse = await client.axiosInstance.request({
+          ...originalRequest,
+          transformResponse: [], // disables built-in transform
+          skipTransform: true, // custom flag we can use
+        })
+        // 🚨 Overwrite the original response object
+        return Object.assign(response, retriedResponse)
       }
       // Refresh failed - force logout
       useAuthStore.getState().removeCurrentUser() // clear user
