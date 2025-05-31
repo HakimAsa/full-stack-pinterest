@@ -28,7 +28,7 @@ const Gallery = ({ searchItem, userId, boardId }) => {
         An error has occured: {data?.originalError?.message}
       </p>
     )
-  if (status === 'pending') return <p>loading...</p>
+  if (status === 'pending') return <p>Loading...</p>
 
   const allPins = data?.pages.flatMap((page) => page.data) || []
   return (

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import './auth.css'
 import Image from '../../components/image/image'
 import PrimaryBtn from '../../components/button/primaryBtn'
@@ -88,6 +89,7 @@ const Auth = () => {
               />
             </div>
             <PrimaryBtn
+              disabled={register.loading}
               type="submit"
               text="Register"
             />
@@ -125,6 +127,7 @@ const Auth = () => {
             <PrimaryBtn
               type="submit"
               text="Login"
+              disabled={login.loading}
             />
 
             <p onClick={() => setIsRegister(true)}>
